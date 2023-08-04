@@ -1,4 +1,4 @@
-import logo
+from logo import ceasar_logo
 
 print(ceasar_logo)
 

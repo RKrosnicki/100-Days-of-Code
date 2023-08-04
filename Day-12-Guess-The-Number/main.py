@@ -1,3 +1,4 @@
+from logo import logo
 from random import randrange
 
 wanna_play = input("Wanna play? (y/n) ")

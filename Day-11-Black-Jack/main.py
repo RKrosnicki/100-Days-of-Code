@@ -1,4 +1,5 @@
 import random
+from logo import logo
 
 def card_draw():
     card_pool = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
@@ -31,7 +32,7 @@ def count_points(hand):
 play = True
 
 while play:
-    clear() # comment it if you're on PyCharm
+    #clear() # comment it if you're on PyCharm
     print(logo)
     go_on = True
     player_hand = [card_draw(), card_draw()]

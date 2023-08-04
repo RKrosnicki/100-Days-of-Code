@@ -1,5 +1,6 @@
+from logo import logo, vs
+from data import data
 import random
-
 def higher_lower(winner):
     A = winner
     global score
@@ -27,7 +28,7 @@ alive = True
 
 while alive:
 
-    clear() #comment it if you're on PyCharm
+    #clear() #comment it if you're on PyCharm
     print(logo)
     A, B = higher_lower(winner)
     print(f'A is {A["name"]}, a {A["description"]} from {A["country"]}')

@@ -2,6 +2,7 @@ import random
 from hangman_art import stages, logo
 from hangman_words import word_list
 
+
 chosen_word = random.choice(word_list)
 word_length = len(chosen_word)
 
@@ -16,7 +17,7 @@ for _ in range(word_length):
 
 while not end_of_game:
     guess = input("Guess a letter: ").lower()
-    #output.clear()
+    clear() #comment it if you're on PyCharm
     if guess in display:
         print("You've already tried that one")
 

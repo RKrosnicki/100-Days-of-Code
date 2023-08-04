@@ -25,7 +25,7 @@ class Ball(Turtle):
 
     def ball_reset(self):
         self.setposition(0, 0)
-        self.base_speed = 0.05
+        self.base_speed = 0.1
         if 0 <= self.heading() <= 90 or 360 > self.heading() >= 270:
             self.setheading(random.randint(90, 270))
         else:

@@ -1,3 +1,5 @@
+from logo import logo
+
 go_on = True
 bids_dict = {}
 
@@ -22,7 +24,7 @@ while go_on:
                 go_on = True
             elif done == "no":
                 go_on = False
-    clear()
+    clear() #comment it if you're on PyCharm
 
 highest_bid = 0
 for bidder in bids_dict:

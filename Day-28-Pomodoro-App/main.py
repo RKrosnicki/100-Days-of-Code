@@ -1,5 +1,7 @@
 from tkinter import *
+
 # ---------------------------- CONSTANTS ------------------------------- #
+
 PINK = "#e2979c"
 RED = "#e7305b"
 GREEN = "#9bdeac"
@@ -11,8 +13,10 @@ LONG_BREAK_MIN = 20
 reps = 0
 break_time = False
 timer = None
+count = 0
 
 # ---------------------------- TIMER RESET ------------------------------- #
+
 def reset_timer():
     global reps
     global break_time
@@ -26,7 +30,8 @@ def reset_timer():
     start_button.config(text="start")
     title_label.config(text="Timer")
 
-# ---------------------------- TIMER MECHANISM ------------------------------- # 
+# ---------------------------- TIMER MECHANISM ------------------------------- #
+
 def start_timer():
     global reps
     global break_time
@@ -48,6 +53,7 @@ def start_timer():
             count_down(SHORT_BREAK_MIN * 60)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
+
 def count_down(count):
     global reps
     global timer

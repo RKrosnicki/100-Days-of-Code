@@ -1,7 +1,10 @@
+###In order to test this app I suggest to change the SPEED constant from default 1000 ms to 10 ###
+
 from tkinter import *
 
 # ---------------------------- CONSTANTS ------------------------------- #
 
+SPEED = 1000
 PINK = "#e2979c"
 RED = "#e7305b"
 GREEN = "#9bdeac"
@@ -69,7 +72,7 @@ def count_down(count):
     canvas.itemconfig(timer_text, text=f"{mins}:{seconds}")
 
     if count > 0:
-        timer = window.after(10, count_down, count-1)
+        timer = window.after(SPEED, count_down, count-1)
     elif count == 0:
         window.attributes("-topmost", True)
         window.attributes("-topmost", False)

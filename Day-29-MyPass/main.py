@@ -47,7 +47,6 @@ def save():
             pwd_entry.delete(0, END)
 
 # ---------------------------- UI SETUP ------------------------------- #
-
 window = Tk()
 window.title("Password Manager")
 window.config(padx=50, pady=50)

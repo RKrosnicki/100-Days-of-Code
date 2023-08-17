@@ -25,6 +25,7 @@ print(f"\nStandard version: {result}")
 #e.g. 4 letter, 2 symbol, 2 number = g^2jk8&P
 
 result_fancy = list(result)
+
 random.shuffle(result_fancy)
 result_fancy = ''.join(result_fancy)
 

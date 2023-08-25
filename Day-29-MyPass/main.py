@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from random import randint, choice, shuffle
 import pyperclip
+import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
@@ -27,22 +28,48 @@ def save():
     website = web_entry.get()
     email = email_entry.get()
     pwd = pwd_entry.get()
+    new_data = {
+        website: {
+            "email: ": email,
+            "password: ": pwd,
+        }
+    }
 
-    if len(website) == 0 or len(email) == 0 or len(pwd) == 0:
+    if len(website) == 0 or len(pwd) == 0:
         messagebox.showinfo(title="Fill in!", message="You've left some fields empty!\n"
                                                       "Don't do that!"
                                                       )
     else:
-        do_we_save_it = messagebox.askokcancel(
-            title=website,
-            message=f"These are the details entered:\n"
-                    f"Email: {email}\nPassword: {pwd}"
-        )
+        # do_we_save_it = messagebox.askokcancel(
+        #     title=website,
+        #     message=f"These are the details entered:\n"
+        #             f"Email: {email}\nPassword: {pwd}"
+        # )
 
-        if do_we_save_it:
-            with open("data.txt", "a") as data:
-                data.write(f"{website} | {email} | {pwd}\n")
+        # if do_we_save_it:
+        try:
+            with open("data.json", "r") as data_file:
+                # reading old data
+                data = json.load(data_file)
+                #updatig old data with new data
+                data.update(new_data)
+        except FileNotFoundError:
+            with open("data.json", "w") as data_file:
+                json.dump(new_data, data_file, indent=4)
 
+            with open("data.json", "r") as data_file:
+                data = json.load(data_file)
+                data.update(new_data)
+
+        except json.decoder.JSONDecodeError:
+            with open("data.json", "w") as data_file:
+                json.dump(new_data, data_file, indent=4)
+
+        else:
+            with open("data.json", "w") as data_file:
+                # saving updated data
+                json.dump(data, data_file, indent=4)
+        finally:
             web_entry.delete(0, END)
             pwd_entry.delete(0, END)
 
@@ -79,6 +106,9 @@ pwd_entry = Entry(width=33)
 pwd_entry.grid(row=3, column=1, sticky=W)
 
 # Buttons
+search_butt = Button(text="Search")
+search_butt.grid(row=1, column=2, sticky=E)
+
 gen_pwd_butt = Button(text="Generate Password", bd=1, command=generate_password)
 gen_pwd_butt.grid(row=3, column=2, sticky=W)
 

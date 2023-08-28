@@ -1,0 +1,1 @@
+At day 30 we've upgraded our password generator to use .json files instead of .txt, and we've handled all possible errors we could think of.

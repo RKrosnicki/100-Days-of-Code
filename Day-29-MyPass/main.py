@@ -30,8 +30,8 @@ def save():
     pwd = pwd_entry.get()
     new_data = {
         website: {
-            "email: ": email,
-            "password: ": pwd,
+            "email": email,
+            "password": pwd,
         }
     }
 
@@ -40,38 +40,41 @@ def save():
                                                       "Don't do that!"
                                                       )
     else:
-        # do_we_save_it = messagebox.askokcancel(
-        #     title=website,
-        #     message=f"These are the details entered:\n"
-        #             f"Email: {email}\nPassword: {pwd}"
-        # )
-
-        # if do_we_save_it:
         try:
             with open("data.json", "r") as data_file:
-                # reading old data
                 data = json.load(data_file)
-                #updatig old data with new data
-                data.update(new_data)
         except FileNotFoundError:
             with open("data.json", "w") as data_file:
                 json.dump(new_data, data_file, indent=4)
-
-            with open("data.json", "r") as data_file:
-                data = json.load(data_file)
-                data.update(new_data)
-
         except json.decoder.JSONDecodeError:
             with open("data.json", "w") as data_file:
                 json.dump(new_data, data_file, indent=4)
-
         else:
+            data.update(new_data)
             with open("data.json", "w") as data_file:
-                # saving updated data
                 json.dump(data, data_file, indent=4)
         finally:
             web_entry.delete(0, END)
             pwd_entry.delete(0, END)
+
+# ---------------------------- SEARCH ------------------------------- #
+def find_password():
+    website = web_entry.get()
+
+    try:
+        with open("data.json", "r") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Data error", message="No Data File Found")
+    except json.decoder.JSONDecodeError:
+        messagebox.showinfo(title="Data error", message="Data File Is Empty")
+    else:
+        if website in data.keys():
+            email = data[website]['email']
+            pwd = data[website]['password']
+            messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {pwd}")
+        else:
+            messagebox.showinfo(title=f"Search error", message=f"{website} was not found!")
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -106,7 +109,7 @@ pwd_entry = Entry(width=33)
 pwd_entry.grid(row=3, column=1, sticky=W)
 
 # Buttons
-search_butt = Button(text="Search")
+search_butt = Button(text="Search", bd=1, width=14, command=find_password)
 search_butt.grid(row=1, column=2, sticky=E)
 
 gen_pwd_butt = Button(text="Generate Password", bd=1, command=generate_password)

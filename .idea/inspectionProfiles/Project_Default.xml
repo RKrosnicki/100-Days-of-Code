@@ -1,0 +1,15 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="calculator.Calculator.__add__" />
+          <option value="calculator.Calculator.__sub__" />
+          <option value="calculator.Calculator.__truediv__" />
+          <option value="calculator.Calculator.__mul__" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

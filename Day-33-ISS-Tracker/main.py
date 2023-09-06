@@ -28,7 +28,7 @@ def send_look_up():
         connection.sendmail(
             from_addr=MY_EMAIL,
             to_addrs=MY_EMAIL,
-            msg=f"Subject: Look up!\n\nLook up!\nISS is above you!"
+            msg="Subject: Look up!\n\nLook up!\nISS is above you!"
         )
 
 def is_night():

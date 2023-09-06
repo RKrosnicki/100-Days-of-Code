@@ -51,7 +51,7 @@ def is_night():
         return True
 
 def sky_is_clear():
-    weather_response = requests.get(url="http://api.weatherapi.com/v1/current.json?key=e53dc32be220486cb92182455230609&q=52.229675, 21.012230&aqi=no")
+    weather_response = requests.get(url=f"http://api.weatherapi.com/v1/current.json?key=e53dc32be220486cb92182455230609&q={MY_LAT}, {MY_LNG}&aqi=no")
     weather_data = weather_response.json()['current']['cloud']
     if weather_data == 0:
         return True

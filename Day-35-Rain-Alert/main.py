@@ -4,6 +4,7 @@ from twilio.rest import Client
 
 ACCOUNT_SID = os.environ['TWILIO_ACCOUNT_SID']
 AUTH_TOKEN = os.environ['TWILIO_AUTH_TOKEN']
+OWM_KEY = os.environ['OWM_API_KEY']
 
 def send_sms(message:str):
     client = Client(ACCOUNT_SID, AUTH_TOKEN)
@@ -16,9 +17,9 @@ def send_sms(message:str):
     print(message.status)
 
 weather_parameters = {
-    "lat": 47.793301,
-    "lon": 22.877081,
-    "appid": "0fcac87a96e0eea68813a009605ab016",
+    "lat": 52.229675,
+    "lon": 21.012230,
+    "appid": OWM_KEY,
     "exclude": "current,minutely,daily,alerts",
     }
 

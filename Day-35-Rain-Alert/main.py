@@ -12,7 +12,7 @@ def send_sms(message:str):
     message = client.messages.create(
              body=message,
              from_='+16072282842',
-             to='+48511345587'
+             to=os.environ['MY_NUMBER']
          )
     print(message.status)
 

@@ -82,7 +82,7 @@ def send_news():
 
 diff, days = daily_stock(STOCK)
 
-if abs(diff) < 5:
+if abs(diff) > 5:
     latest_news = get_news(COMPANY_NAME)
     send_news()
 # else:

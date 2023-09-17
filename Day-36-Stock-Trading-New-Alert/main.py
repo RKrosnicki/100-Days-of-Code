@@ -25,7 +25,7 @@ def daily_stock(stock):
     days_list = alpha_data.keys()
     yesterday_close = float(alpha_data[list(days_list)[0]]['4. close'])
     day_before_yesterday_close = float(alpha_data[list(days_list)[1]]['4. close'])
-    result = (1 - (yesterday_close/day_before_yesterday_close)) * 100
+    result = ((yesterday_close - day_before_yesterday_close) / yesterday_close) * 100
     result = round(result, 4)
     # print(result) ## Uncomment if you want to print a stock fluctuations.
     return result, days_list
@@ -82,7 +82,7 @@ def send_news():
 
 diff, days = daily_stock(STOCK)
 
-if abs(diff) > 5:
+if abs(diff) < 5:
     latest_news = get_news(COMPANY_NAME)
     send_news()
 # else:

@@ -19,13 +19,14 @@ class FlightSearch:
         self.today = self.now.strftime("%d/%m/%Y")
         self.day_in_6m = (self.now + timedelta(days=180)).strftime("%d/%m/%Y")
 
-    def search(self, destination, max_price):
+    def search(self, destination, max_price, stop_overs=0):
         search_params = {
             "fly_from": self.fly_from,
             "fly_to": destination,
             "date_from": self.today,
             "date_to": self.day_in_6m,
             "price_to": max_price,
+            "max_stopovers": stop_overs,
             "limit": 10
         }
         response = requests.get(url=self.endpoint, params=search_params, headers=self.kiwi_header)

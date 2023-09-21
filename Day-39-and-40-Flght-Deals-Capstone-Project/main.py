@@ -7,21 +7,31 @@ from notification_manager import NotificationManager
 flight_data = FlightData()
 
 data_manager = DataManager()
-data = data_manager.get_sheet()
-print(data)
+data = data_manager.get_destinations_data()
 
 flight_search = FlightSearch()
-
-# data_manager.update_codes(data)    # Run this function just once, to update IATA codes in your Google Sheet:
 notification_manager = NotificationManager()
+
+email_text = ""
 
 for record in data['price']:
     print(f"Checking {record['city']} >>>>>>>>>>>>>>")
     result = flight_search.search(record['iataCode'], record['lowestPrice'])
     if result['_results'] != 0:
         result = flight_search.search(record['iataCode'], record['lowestPrice'])
-        print(result)
-        notification_manager.send_message(result)
+        notification_manager.send_sms(result)
+        print("Sending direct flight info.")
+    else:
+        result = flight_search.search(destination=record['iataCode'], max_price=record['lowestPrice'], stop_overs=1)
+        notification_manager.send_sms(result, direct=False)
+        print("Sending non-direct flight info.")
     print("===================================")
 
-# print(prices_dict)
+    email_text += f"{notification_manager.formatted_message}\n=============================================\n"
+
+customers = data_manager.get_customers()
+# print(customers['user'])
+
+for customer in customers['user']:
+    notification_manager.send_email(customer, email_text)
+

@@ -24,22 +24,22 @@ class NotificationManager:
         price = data['data'][0]['fare']['adults']
         if direct:
             self.formatted_message = (f"Znaleziono tani lot!\n"
-                  f"Do {destination}({destination_code})\n"
-                  f"Czas odlotu: {dt_object}\n"
-                  f"Cena: EUR {price}\n")
+                                      f"Do {destination}({destination_code})\n"
+                                      f"Czas odlotu: {dt_object}\n"
+                                      f"Cena: EUR {price}\n")
         else:
             via_city = data['data'][0]['route'][0]
             self.formatted_message = (f"Znaleziono tani lot!\n"
-                  f"Do {destination}({destination_code})\n"
-                  f"Czas odlotu: {dt_object}\n"
-                  f"Przez: {via_city['cityTo']}({via_city['cityCodeTo']})\n"
-                  f"Cena: EUR {price}\n")
+                                      f"Do {destination}({destination_code})\n"
+                                      f"Czas odlotu: {dt_object}\n"
+                                      f"Przez: {via_city['cityTo']}({via_city['cityCodeTo']})\n"
+                                      f"Cena: EUR {price}\n")
 
         message = self.client.messages.create(
-             body=self.formatted_message,
-             from_='+16072282842',
-             to=os.environ['MY_NUMBER']
-         )
+            body=self.formatted_message,
+            from_='+16072282842',
+            to=os.environ['MY_NUMBER']
+        )
 
     def send_email(self, customer, message):
         with smtplib.SMTP("smtp.gmail.com") as connection:

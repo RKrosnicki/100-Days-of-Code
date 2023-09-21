@@ -1,7 +1,6 @@
 import requests
 import os
 from datetime import datetime, timedelta
-from notification_manager import NotificationManager
 
 
 class FlightSearch:
@@ -32,10 +31,3 @@ class FlightSearch:
         response = requests.get(url=self.endpoint, params=search_params, headers=self.kiwi_header)
         # print(response.text)
         return response.json()
-
-
-# try_it = FlightSearch()
-# data = try_it.search("ORY", 500)
-# notification_manager = NotificationManager()
-# notification_manager.send_message(data)
-
